@@ -42,10 +42,25 @@ const debug = curry((title, value) => {
 
 describe("Pokemon-Kata" , () => {
   it("should find the nearest distance to a Pokemon of type 'Normal'", () => {
-    expect("Your Code Here").toBeCloseTo(21.9, 1);
+    expect(
+      R.pipe(
+        filter(mon => mon.type === 'Normal'),
+        map(mon => mon.position),
+        map(pos => distance(playerPosition, pos)),
+        // map(dis => dis.toFixed(1)), // optional rounding
+        map(dis => Number(dis))
+      )(mons)[0]
+    ).toBeCloseTo(21.9, 1);
   });
 
-  it("should find the name of the nearest Pokemon of type 'Normal'");
+  it("should find the name of the nearest Pokemon of type 'Normal'", () => {
+    expect(
+      R.pipe(
+        filter(mon => mon.type === 'Normal'),
+        R.sort(mon => -distance(playerPosition, mon.position))
+      )(mons)[0].name
+    ).toBe('Mewtwo');
+  });
 
 });
 
