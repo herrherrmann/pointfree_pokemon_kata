@@ -38,7 +38,7 @@ const distance = curryN(
 const debug = curry((title, value) => {
   console.log(title, value);
   return value;
-})
+});
 
 describe("Pokemon-Kata" , () => {
   it("should find the nearest distance to a Pokemon of type 'Normal'", () => {
